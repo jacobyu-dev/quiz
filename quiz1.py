@@ -6,7 +6,7 @@ for i in range(1,10):
 
 print(nums)
 
-# TODO: 
+# TODO:
 # list 'nums' 에 담긴 값을 오름차순으로 정렬하세요
 # e.g.
 #   정렬 전 nums = [3, 4, 1, 2, 34]
@@ -18,7 +18,13 @@ print(nums)
 #   상단, 하단에 기존 코드를 수정하지 않습니다.
 
 # {코드 작성 시작}
-
+temp = -10000000
+for i in range(1, len(nums)):
+	for j in range(i, 0, -1):
+		# print(i, j-1)
+		if nums[j] < nums[j-1]:
+			temp = nums[j]
+			nums[j] = nums[j-1]
+			nums[j-1] = temp
 # {코드 작성 완료}
-
 print(nums)
