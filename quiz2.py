@@ -1,6 +1,6 @@
 lines: list = []
 f = open('data/quiz2.txt', mode='r')
-#print(f.read())
+# print(f.read())
 for line in f.readlines():
   lines.append(line)
 f.close()
@@ -26,8 +26,43 @@ f.close()
 #   파이썬 코드 파일을 추가로 생성하지 않습니다. 
 #   상단 코드는 하단의 코드로 결과를 확인할 수 있는 한 마음껏 수정하셔도 됩니다.
 
-# {코드 작성 시작} 
+# {코드 작성 시작}
 
+def IsPrimeNumber(n):
+  # 2부터 (n - 1)까지의 모든 수를 확인
+  for i in range(2, n):
+      if n % i == 0:
+          return False # 소수가 아님
+  return True
+
+answer = 0
+lines = list(map(int, lines)) # 타입 변환
+
+for i in range(1,len(lines)):
+  if (lines[i])%3 == 0: #3의 배수
+    answer += (lines[i-1] * lines[i])
+  elif lines[i]%10 == 0:  #10의 배수
+      answer += (lines[i-1] - lines[i])
+  elif IsPrimeNumber(lines[i]) == True:  # 소수
+      answer += (lines[i-1] / lines[i])
+  else:  # 더하기
+      answer += (lines[i-1] + lines[i])
+print('answer : ', answer )
+
+
+# 파일 읽고, 저장
+lines = list(map(str, lines))
+lines.insert(0, str(answer))
+for k in range(len(lines)):
+  lines[k] +='\n'
+
+f = open('data/quiz2.txt', mode='w')
+for j in lines:
+  f.write(j)
+
+# for line in f.readlines():
+#   lines.append(line)
+# lines.insert(0, str(answer))
 # {코드 작성 완료}
 
 f = open('data/quiz2.txt', mode='r')
